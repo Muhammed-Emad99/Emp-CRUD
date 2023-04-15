@@ -1,0 +1,76 @@
+<div class="d-flex bg-secondary text-white flex-row justify-content-between p-4">
+
+  <h4>{{title}}</h4>
+
+  <div class="example-button-row">
+
+    <button mat-raised-button color="warn" class="mx-3"><mat-icon>remove_circle</mat-icon>
+      Delete</button>
+
+    <button mat-raised-button color="primary" (click)="openAddDialog()"> <mat-icon>add_box</mat-icon>
+      Add New Employee</button>
+  </div>
+
+</div>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><input type="checkbox" name="check-all" id=""></th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th></th>
+      <th scope="col">Address</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+
+
+  <tbody *ngIf="employeesData.length > 0 ">
+    <tr *ngFor="let employee of employeesData | paginate: { itemsPerPage: 10, currentPage: p }">
+      <th scope="col"><input type="checkbox" name="check-all" id=""></th>
+      <td scope="row">{{employee.empName}}</td>
+      <td scope="row" colspan="2">{{employee.empEmail}}</td>
+      <td scope="row">{{employee.empAddress}}</td>
+      <td scope="row">{{employee.empPhone}}</td>
+      <td>
+        <div class="example-button-row">
+          <button mat-button (click)="openEditDialog(employee.empId)">
+            <mat-icon color="primary" fontIcon="edit" class="mx-5"></mat-icon>
+          </button>
+
+
+          <button mat-button (click)="openDeleteDialog(employee.empId)"><mat-icon color="warn"
+              fontIcon="delete_forever"></mat-icon>
+          </button>
+
+
+        </div>
+      </td>
+    </tr>
+  </tbody>
+
+  <tfoot *ngIf="employeesData.length === 0 ">
+    <tr>
+      <td></td>
+      <td></td>
+      <td colspan="2">
+        <h6 class="text-end">No Employees Founded!
+        </h6>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+  </tfoot>
+
+</table>
+
+<div class="d-flex justify-content-end">
+  <pagination-controls (pageChange)="p = $event">
+  </pagination-controls>
+</div>

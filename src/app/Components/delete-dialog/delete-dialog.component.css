@@ -1,0 +1,4 @@
+.mdc-dialog__title::before {
+  height: 0;
+}
+

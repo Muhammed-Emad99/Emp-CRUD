@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-between align-items-center">
+  <h2 mat-dialog-title class="my-0 py-0">Delete Employee</h2>
+  <button mat-button mat-dialog-close class="bg-transparent text-danger h4">x</button>
+</div>
+
+<div mat-dialog-content class="text-capitalize">are you sure you want to remove this record?</div>
+
+<div mat-dialog-content class="text-capitalize text-danger">
+  this action can't be undo
+</div>
+
+<div mat-dialog-actions align="end">
+  <form class="example-form" [formGroup]="deleteForm" (ngSubmit)="onSubmit()" >
+
+    <input type="hidden" formControlName="id">
+    <button mat-button mat-dialog-close>Close</button>
+    <button mat-stroked-button color="primary" [mat-dialog-close]="true" type="submit" cdkFocusInitial>Submit</button>
+  </form>
+</div>
